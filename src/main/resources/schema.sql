@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS todo (
+    id UUID PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    description VARCHAR(2000) NOT NULL DEFAULT '',
+    status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
+);

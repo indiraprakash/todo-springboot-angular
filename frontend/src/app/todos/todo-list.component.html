@@ -1,0 +1,54 @@
+<section class="todo-page">
+  <div class="intro">
+    <p class="eyebrow">YOUR DAY, IN FOCUS</p>
+    <h1>Things to do</h1>
+    <p class="subheading">Capture a task, then take it one step at a time.</p>
+  </div>
+
+  <form class="todo-form" (ngSubmit)="addTodo()">
+    <label for="todo-title">Task</label>
+    <input
+      id="todo-title"
+      name="title"
+      maxlength="200"
+      placeholder="What needs to get done?"
+      [ngModel]="title()"
+      (ngModelChange)="title.set($event)"
+      required
+    />
+    <label for="todo-description">Details <span>(optional)</span></label>
+    <textarea
+      id="todo-description"
+      name="description"
+      maxlength="2000"
+      rows="2"
+      placeholder="Add a little more context"
+      [ngModel]="description()"
+      (ngModelChange)="description.set($event)"
+    ></textarea>
+    <button class="add-button" type="submit" [disabled]="!title().trim()">Add task</button>
+  </form>
+
+  @if (error()) {
+    <p class="message error" role="alert">{{ error() }}</p>
+  }
+
+  @if (loading()) {
+    <p class="message">Loading your tasks…</p>
+  } @else if (todos().length === 0) {
+    <div class="empty-state">
+      <h2>Nothing on your list yet</h2>
+      <p>Add a task above to get started.</p>
+    </div>
+  } @else {
+    <section class="todo-list" aria-label="Your tasks">
+      @for (todo of todos(); track todo.id) {
+        <app-todo-item
+          [todo]="todo"
+          (statusChange)="changeStatus(todo, $event)"
+          (remove)="removeTodo(todo)"
+        />
+      }
+    </section>
+  }
+</section>
