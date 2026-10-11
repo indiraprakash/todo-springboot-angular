@@ -51,4 +51,23 @@ describe('TodoService', () => {
       updatedAt: '2026-10-11T06:00:00',
     });
   });
+
+  it('updates an existing todo', () => {
+    service.updateTodo('todo-id', 'Updated task', 'New details').subscribe();
+
+    const request = http.expectOne('http://localhost:8080/api/todos/todo-id');
+    expect(request.request.method).toBe('PUT');
+    expect(request.request.body).toEqual({
+      title: 'Updated task',
+      description: 'New details',
+    });
+    request.flush({
+      id: 'todo-id',
+      title: 'Updated task',
+      description: 'New details',
+      status: TodoStatus.PENDING,
+      createdAt: '2026-10-11T06:00:00',
+      updatedAt: '2026-10-11T06:01:00',
+    });
+  });
 });

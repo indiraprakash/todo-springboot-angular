@@ -31,4 +31,14 @@ public record Todo(
     public Todo withStatus(TodoStatus status, LocalDateTime updatedAt) {
         return new Todo(id, title, description, status, createdAt, updatedAt);
     }
+
+    public Todo apply(TodoMutation mutation, LocalDateTime updatedAt) {
+        if (mutation instanceof TodoMutation.SetDetails details) {
+            return withDetails(details.title(), details.description(), updatedAt);
+        }
+        if (mutation instanceof TodoMutation.SetStatus status) {
+            return withStatus(status.status(), updatedAt);
+        }
+        throw new IllegalStateException("Unsupported todo mutation");
+    }
 }

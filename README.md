@@ -26,7 +26,7 @@ In another terminal, start the frontend:
 
 ```sh
 cd frontend
-npm install
+npm ci
 npm start
 ```
 

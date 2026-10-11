@@ -17,6 +17,10 @@ export class TodoService {
     return this.http.post<Todo>(this.endpoint, { title, description });
   }
 
+  updateTodo(id: string, title: string, description: string): Observable<Todo> {
+    return this.http.put<Todo>(`${this.endpoint}/${id}`, { title, description });
+  }
+
   updateStatus(id: string, status: TodoStatus): Observable<Todo> {
     return this.http.patch<Todo>(`${this.endpoint}/${id}/status`, { status });
   }

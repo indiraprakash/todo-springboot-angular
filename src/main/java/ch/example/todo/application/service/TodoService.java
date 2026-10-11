@@ -3,6 +3,7 @@ package ch.example.todo.application.service;
 import ch.example.todo.application.port.TodoRepository;
 import ch.example.todo.domain.model.Todo;
 import ch.example.todo.domain.model.TodoId;
+import ch.example.todo.domain.model.TodoMutation;
 import ch.example.todo.domain.model.TodoStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,14 +44,16 @@ public class TodoService {
 
     public Todo update(TodoId id, String title, String description) {
         Todo current = findById(id);
-        Todo updated = current.withDetails(title, description, LocalDateTime.now(clock));
+        Todo updated = current.apply(
+                new TodoMutation.SetDetails(title, description), LocalDateTime.now(clock));
         repository.update(updated);
         return updated;
     }
 
     public Todo updateStatus(TodoId id, TodoStatus status) {
         Todo current = findById(id);
-        Todo updated = current.withStatus(status, LocalDateTime.now(clock));
+        Todo updated = current.apply(
+                new TodoMutation.SetStatus(status), LocalDateTime.now(clock));
         repository.update(updated);
         return updated;
     }
