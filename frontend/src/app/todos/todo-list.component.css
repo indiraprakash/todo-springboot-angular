@@ -1,0 +1,107 @@
+.todo-page {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 4rem 1.5rem;
+}
+
+.intro {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  color: #0e7490;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.65rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.subheading,
+.message,
+.empty-state p {
+  color: #64748b;
+}
+
+.todo-form {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.25rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+label span {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+input,
+textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #0e7490;
+  outline: 2px solid #a5f3fc;
+}
+
+.add-button {
+  background: #0e7490;
+  border: 0;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: 650;
+  justify-self: end;
+  margin-top: 0.35rem;
+  padding: 0.7rem 1.15rem;
+}
+
+.add-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.todo-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.empty-state {
+  background: #fff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+}
+
+.error {
+  color: #b91c1c;
+}

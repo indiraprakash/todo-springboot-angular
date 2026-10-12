@@ -1,0 +1,18 @@
+<article class="todo-item" [class.completed]="todo.status === TodoStatus.COMPLETED">
+  <input
+    class="todo-check"
+    type="checkbox"
+    [checked]="todo.status === TodoStatus.COMPLETED"
+    [attr.aria-label]="'Mark ' + todo.title + (todo.status === TodoStatus.COMPLETED ? ' pending' : ' complete')"
+    (change)="onStatusChange($event)"
+  />
+  <div class="todo-copy">
+    <h2>{{ todo.title }}</h2>
+    @if (todo.description) {
+      <p>{{ todo.description }}</p>
+    }
+  </div>
+  <button class="delete-button" type="button" [attr.aria-label]="'Delete ' + todo.title" (click)="remove.emit()">
+    Delete
+  </button>
+</article>
